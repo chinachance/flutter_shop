@@ -1,4 +1,7 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_my_demo/home.dart';
 
 void main() => runApp(MyApp());
 
@@ -11,44 +14,51 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      home: MySplashPage(),
     );
   }
+
 }
 
-class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
-
-  final String title;
+class MySplashPage extends StatefulWidget {
+  MySplashPage() : super();
 
   @override
-  _MyHomePageState createState() => _MyHomePageState();
+  _SplashPageState createState() => _SplashPageState();
+
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _SplashPageState extends State {
+  Timer timer;
+
+
+  @override
+  void initState() {
+    super.initState();
+    //首次调用,只调用一次
+    timer =  new Timer(const Duration(milliseconds: 1500),(){
+      //定时器完成时的回调
+//      Navigator.of(context).pushAndRemoveUntil(new MaterialPageRoute(
+//          builder: (BuildContext context)) => new homePage()),
+//      ();
+      Navigator.of(context).pushAndRemoveUntil(new MaterialPageRoute(
+          builder: (BuildContext context) => new homePage()), (//跳转到主页
+          Route route) => route == null);
+    });
+  }
+
+  @override
+  void dispose() {
+    //页面销毁时
+    timer.cancel();
+    super.dispose();
+
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
-      body: new Container(
-        padding: const EdgeInsets.all(32.0),
-        child: new Row(
-          children: [
-            new Container(
-              padding: const EdgeInsets.only(bottom: 8.0),
-              child: new Text("123"),
-            ),
-            new Icon(
-              Icons.star,
-              color: Colors.red,
-            ),
-            new Text("41")
-          ],
-        ),
-      ),
-      // This trailing comma makes auto-formatting nicer for build methods.
+      body: new Image.asset("images/title.jpg"),
     );
   }
 }
