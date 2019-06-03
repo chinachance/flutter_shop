@@ -38,9 +38,6 @@ class _SplashPageState extends State {
     //首次调用,只调用一次
     timer =  new Timer(const Duration(milliseconds: 1500),(){
       //定时器完成时的回调
-//      Navigator.of(context).pushAndRemoveUntil(new MaterialPageRoute(
-//          builder: (BuildContext context)) => new homePage()),
-//      ();
       Navigator.of(context).pushAndRemoveUntil(new MaterialPageRoute(
           builder: (BuildContext context) => new homePage()), (//跳转到主页
           Route route) => route == null);
@@ -58,7 +55,7 @@ class _SplashPageState extends State {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: new Image.asset("images/title.jpg"),
+      body: new Image.asset("images/splash.jpg"),
     );
   }
 }
