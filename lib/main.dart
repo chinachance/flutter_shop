@@ -17,7 +17,6 @@ class MyApp extends StatelessWidget {
       home: MySplashPage(),
     );
   }
-
 }
 
 class MySplashPage extends StatefulWidget {
@@ -29,33 +28,44 @@ class MySplashPage extends StatefulWidget {
 }
 
 class _SplashPageState extends State {
-  Timer timer;
+//  Timer timer;
 
+
+  @override
+  void dispose() {
+    //页面销毁时
+//    timer.cancel();
+    super.dispose();
+  }
 
   @override
   void initState() {
     super.initState();
     //首次调用,只调用一次
-    timer =  new Timer(const Duration(milliseconds: 1500),(){
-      //定时器完成时的回调
-      Navigator.of(context).pushAndRemoveUntil(new MaterialPageRoute(
-          builder: (BuildContext context) => new homePage()), (//跳转到主页
-          Route route) => route == null);
+//    timer = new Timer(const Duration(milliseconds: 1500), () {
+//      //定时器完成时的回调
+//      Navigator.of(context).pushAndRemoveUntil(new MaterialPageRoute(
+//          builder: (BuildContext context) => new homePage()), ( //跳转到主页
+//          Route route) => route == null);
+//    });
+    new Future.delayed(const Duration(seconds: 2, milliseconds: 500), () {
+      Navigator.of(context).pushAndRemoveUntil(
+          new MaterialPageRoute(
+              builder: (BuildContext context) => new HomePage()),
+              ( //跳转到主页
+              Route route) =>
+          route == null);
+      return true;
     });
-  }
-
-  @override
-  void dispose() {
-    //页面销毁时
-    timer.cancel();
-    super.dispose();
-
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: new Image.asset("images/splash.jpg"),
+      body: new Center(
+        child: new Image.asset("images/splash.jpg"),
+
+      )
     );
   }
 }
