@@ -11,12 +11,23 @@ class LearnPage extends StatelessWidget {
         padding: const EdgeInsets.all(10.0),
         children: <Widget>[
           _CustomListItem(
-            thumbnail: Container(
-              decoration: const BoxDecoration(color: Colors.pink),
+            thumbnail: GestureDetector(
+              child: AnimatedContainer(
+                duration: Duration(milliseconds: 500),
+                foregroundDecoration: BoxDecoration(color: Colors.pink),
+              ),
+//              onTap: Fluttertoast.showToast(
+//                  msg: "This is Center Short Toast",
+//                  toastLength: Toast.LENGTH_SHORT,
+//                  gravity: ToastGravity.CENTER,
+//                  timeInSecForIos: 1,
+//                  bgcolor: "#e74c3c",
+//                  textcolor: '#ffffff'
+//              ),
             ),
             title: 'shop',
             subtitle:
-                'Flutter continues to improve and expand its horizons.This text should max out at two lines and clip',
+            'Flutter continues to improve and expand its horizons.This text should max out at two lines and clip',
             author: 'hao',
             publishDate: '2019-6-4',
             readDuration: '5 mins',
@@ -32,6 +43,7 @@ class LearnPage extends StatelessWidget {
             readDuration: '5 mins',
           )
         ],
+
       ),
     );
   }
@@ -106,14 +118,13 @@ class _ArticleDescription extends StatelessWidget {
 }
 
 class _CustomListItem extends StatelessWidget {
-  _CustomListItem(
-      {Key key,
-      this.thumbnail,
-      this.title,
-      this.subtitle,
-      this.author,
-      this.publishDate,
-      this.readDuration})
+  _CustomListItem({Key key,
+    this.thumbnail,
+    this.title,
+    this.subtitle,
+    this.author,
+    this.publishDate,
+    this.readDuration})
       : super(key: key);
 
   final Widget thumbnail;
