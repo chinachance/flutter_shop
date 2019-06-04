@@ -10,7 +10,7 @@ class LearnPage extends StatelessWidget {
       body: ListView(
         padding: const EdgeInsets.all(10.0),
         children: <Widget>[
-          _CustomListItemTwo(
+          _CustomListItem(
             thumbnail: Container(
               decoration: const BoxDecoration(color: Colors.pink),
             ),
@@ -21,7 +21,7 @@ class LearnPage extends StatelessWidget {
             publishDate: '2019-6-4',
             readDuration: '5 mins',
           ),
-          _CustomListItemTwo(
+          _CustomListItem(
             thumbnail: Container(
               decoration: const BoxDecoration(color: Colors.blue),
             ),
@@ -37,6 +37,7 @@ class LearnPage extends StatelessWidget {
   }
 }
 
+///图片右边的文件描述组件
 class _ArticleDescription extends StatelessWidget {
   _ArticleDescription({
     Key key,
@@ -104,8 +105,8 @@ class _ArticleDescription extends StatelessWidget {
   }
 }
 
-class _CustomListItemTwo extends StatelessWidget {
-  _CustomListItemTwo(
+class _CustomListItem extends StatelessWidget {
+  _CustomListItem(
       {Key key,
       this.thumbnail,
       this.title,
