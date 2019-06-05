@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_my_demo/me.dart';
+import 'package:flutter_my_demo/message.dart';
 
 import 'learn.dart';
 
@@ -29,14 +31,8 @@ class _MyTabStetefulWidgetState extends State<TabPage> {
       TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
   static const List<Widget> _widgetOptions = <Widget>[
     LearnPage(),
-    Text(
-      'Index 1: Message',
-      style: optionStyle,
-    ),
-    Text(
-      'Index 2: Me',
-      style: optionStyle,
-    )
+    MessagePage(),
+    MePage()
   ];
 
   void _onItemTapped(int index) {
