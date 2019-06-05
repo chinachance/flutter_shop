@@ -1,8 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 ///tab1
 class LearnPage extends StatelessWidget {
   const LearnPage() : super();
+
+  void shoToast(){
+    Fluttertoast.showToast(
+        msg: "This is Center Short Toast",
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.CENTER,
+        timeInSecForIos: 1,
+        backgroundColor: Colors.grey,
+        textColor: Colors.black,
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -11,19 +23,13 @@ class LearnPage extends StatelessWidget {
         padding: const EdgeInsets.all(10.0),
         children: <Widget>[
           _CustomListItem(
+            //GestureDetector 点击事件需要用GestureDetector在外边包裹,然后在onTap执行点击操作
             thumbnail: GestureDetector(
               child: AnimatedContainer(
                 duration: Duration(milliseconds: 500),
                 foregroundDecoration: BoxDecoration(color: Colors.pink),
               ),
-//              onTap: Fluttertoast.showToast(
-//                  msg: "This is Center Short Toast",
-//                  toastLength: Toast.LENGTH_SHORT,
-//                  gravity: ToastGravity.CENTER,
-//                  timeInSecForIos: 1,
-//                  bgcolor: "#e74c3c",
-//                  textcolor: '#ffffff'
-//              ),
+              onTap: shoToast,
             ),
             title: 'shop',
             subtitle:
