@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_my_demo/me.dart';
-import 'package:flutter_my_demo/message.dart';
+import 'package:flutter_my_demo/page/me.dart';
+import 'package:flutter_my_demo/page/message.dart';
 
 import 'learn.dart';
 
