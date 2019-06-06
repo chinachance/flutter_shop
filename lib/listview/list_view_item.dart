@@ -8,6 +8,8 @@ import 'package:flutter/material.dart';
 //import '../routers/routers.dart';
 import 'dart:core';
 
+import 'package:fluttertoast/fluttertoast.dart';
+
 class ListViewItem extends StatelessWidget {
   final String itemUrl;
   final String itemTitle;
@@ -26,7 +28,8 @@ class ListViewItem extends StatelessWidget {
         onTap: () {
           // _launchURL(itemUrl, context);
 //          Application.router.navigateTo(context, '${Routes.webViewPage}?title=${Uri.encodeComponent(itemTitle)}&url=${Uri.encodeComponent(itemUrl)}');
-          //todo item跳转
+          //item跳转
+          shoToast();
         },
         title: Padding(
           child: Text(
@@ -47,6 +50,17 @@ class ListViewItem extends StatelessWidget {
         trailing:
             Icon(Icons.keyboard_arrow_right, color: Colors.grey, size: 30.0),
       ),
+    );
+  }
+
+  void shoToast(){
+    Fluttertoast.showToast(
+      msg: "This is Center Short Toast",
+      toastLength: Toast.LENGTH_SHORT,
+      gravity: ToastGravity.CENTER,
+      timeInSecForIos: 1,
+      backgroundColor: Colors.grey,
+      textColor: Colors.black,
     );
   }
 }

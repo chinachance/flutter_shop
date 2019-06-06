@@ -22,7 +22,7 @@ class LearnPage extends StatelessWidget {
       body: ListView(
         padding: const EdgeInsets.all(10.0),
         children: <Widget>[
-          _CustomListItem(
+          CustomListItem(
             //GestureDetector 点击事件需要用GestureDetector在外边包裹,然后在onTap执行点击操作
             thumbnail: GestureDetector(
               child: AnimatedContainer(
@@ -38,7 +38,7 @@ class LearnPage extends StatelessWidget {
             publishDate: '2019-6-4',
             readDuration: '5 mins',
           ),
-          _CustomListItem(
+          CustomListItem(
             thumbnail: Container(
               decoration: const BoxDecoration(color: Colors.blue),
             ),
@@ -123,8 +123,8 @@ class _ArticleDescription extends StatelessWidget {
   }
 }
 
-class _CustomListItem extends StatelessWidget {
-  _CustomListItem({Key key,
+class CustomListItem extends StatelessWidget {
+  CustomListItem({Key key,
     this.thumbnail,
     this.title,
     this.subtitle,
