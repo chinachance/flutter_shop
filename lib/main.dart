@@ -26,13 +26,15 @@ class MySplashPage extends StatefulWidget {
   _SplashPageState createState() => _SplashPageState();
 }
 
-class _SplashPageState extends State {
-//  Timer timer;
+class _SplashPageState extends State<MySplashPage> with SingleTickerProviderStateMixin{
+
+  AnimationController _controller;
+  Animation _animation;
 
   @override
   void dispose() {
     //页面销毁时
-//    timer.cancel();
+    _controller.dispose();
     super.dispose();
   }
 
@@ -46,21 +48,37 @@ class _SplashPageState extends State {
 //          builder: (BuildContext context) => new homePage()), ( //跳转到主页
 //          Route route) => route == null);
 //    });
-    new Future.delayed(const Duration(seconds: 2, milliseconds: 500), () {
-      Navigator.of(context).pushAndRemoveUntil(
-          new MaterialPageRoute(
-              //跳转到主页
-              builder: (BuildContext context) => new HomePage()),
-          (Route route) => route == null);
-      return true;
+//    new Future.delayed(const Duration(seconds: 2, milliseconds: 500), () {
+//      Navigator.of(context).pushAndRemoveUntil(
+//          new MaterialPageRoute(
+//              //跳转到主页
+//              builder: (BuildContext context) => new HomePage()),
+//          (Route route) => route == null);
+//      return true;
+//    });
+    _controller =
+        AnimationController(vsync: this, duration: Duration(milliseconds: 15000));
+    _animation = Tween(begin: 0.0, end: 1.0).animate(_controller);
+
+    _animation.addStatusListener((status) {
+      if (status == AnimationStatus.completed) {
+        Navigator.of(context).pushAndRemoveUntil(
+            MaterialPageRoute(builder: (context) => HomePage()),
+                (route) => route == null);
+      }
     });
+    _controller.forward();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         body: new Center(
-      child: new Image.asset("images/splash.jpg"),
+      child: new Image.asset(
+        "images/splash.jpg",
+        scale: 2.0,
+        fit: BoxFit.cover,
+      ),
     ));
   }
 }

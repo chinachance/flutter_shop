@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_my_demo/page/me.dart';
 import 'package:flutter_my_demo/page/message.dart';
-
 import 'learn.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 class HomePage extends StatelessWidget {
   HomePage() : super();
@@ -34,6 +34,13 @@ class _MyTabStetefulWidgetState extends State<TabPage> {
     MessagePage(),
     MePage()
   ];
+
+  @override
+  Future initState() async {
+    super.initState();
+    Map<PermissionGroup, PermissionStatus> permissions = await PermissionHandler().requestPermissions([PermissionGroup.location]);
+
+  }
 
   void _onItemTapped(int index) {
     setState(() {

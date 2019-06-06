@@ -30,6 +30,8 @@ dependencies:
   dio: ^2.1.7
   #webview
   flutter_webview_plugin: ^0.3.5
+  #权限
+  permission_handler: ^3.0.0
 
 dev_dependencies:
   flutter_test:
@@ -78,5 +80,4 @@ flutter:
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
   assets:
-    - images/title.jpg
-    - images/splash.jpg
+    - images/
