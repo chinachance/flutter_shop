@@ -4,6 +4,8 @@
 /// @Last Modified time: 2019-01-14 17:57:51
 
 import 'package:flutter/material.dart';
+import 'package:flutter_my_demo/page/webview.dart';
+
 //import '../routers/application.dart';
 //import '../routers/routers.dart';
 import 'dart:core';
@@ -26,10 +28,11 @@ class ListViewItem extends StatelessWidget {
       margin: new EdgeInsets.symmetric(horizontal: 10.0, vertical: 6.0),
       child: ListTile(
         onTap: () {
-          // _launchURL(itemUrl, context);
-//          Application.router.navigateTo(context, '${Routes.webViewPage}?title=${Uri.encodeComponent(itemTitle)}&url=${Uri.encodeComponent(itemUrl)}');
           //item跳转
-          shoToast();
+          Navigator.of(context).push(
+              new MaterialPageRoute(
+                  //跳转到主页
+                  builder: (BuildContext context) => new WebViewPage(itemUrl,itemTitle)));
         },
         title: Padding(
           child: Text(
@@ -50,17 +53,6 @@ class ListViewItem extends StatelessWidget {
         trailing:
             Icon(Icons.keyboard_arrow_right, color: Colors.grey, size: 30.0),
       ),
-    );
-  }
-
-  void shoToast(){
-    Fluttertoast.showToast(
-      msg: "This is Center Short Toast",
-      toastLength: Toast.LENGTH_SHORT,
-      gravity: ToastGravity.CENTER,
-      timeInSecForIos: 1,
-      backgroundColor: Colors.grey,
-      textColor: Colors.black,
     );
   }
 }

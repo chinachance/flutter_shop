@@ -24,12 +24,10 @@ class MySplashPage extends StatefulWidget {
 
   @override
   _SplashPageState createState() => _SplashPageState();
-
 }
 
 class _SplashPageState extends State {
 //  Timer timer;
-
 
   @override
   void dispose() {
@@ -51,10 +49,9 @@ class _SplashPageState extends State {
     new Future.delayed(const Duration(seconds: 2, milliseconds: 500), () {
       Navigator.of(context).pushAndRemoveUntil(
           new MaterialPageRoute(
+              //跳转到主页
               builder: (BuildContext context) => new HomePage()),
-              ( //跳转到主页
-              Route route) =>
-          route == null);
+          (Route route) => route == null);
       return true;
     });
   }
@@ -62,10 +59,8 @@ class _SplashPageState extends State {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: new Center(
-        child: new Image.asset("images/splash.jpg"),
-
-      )
-    );
+        body: new Center(
+      child: new Image.asset("images/splash.jpg"),
+    ));
   }
 }
