@@ -45,9 +45,17 @@ class _MyTabStetefulWidgetState extends State<TabPage> {
   }
 
   requestPermiss() async {
+    //请求权限
     Map<PermissionGroup, PermissionStatus> permissions =
     await PermissionHandler()
-        .requestPermissions([PermissionGroup.location]);
+        .requestPermissions([PermissionGroup.location, PermissionGroup.camera]);
+    //校验权限
+    if (permissions[PermissionGroup.camera] != PermissionStatus.granted) {
+      print("无照相权限");
+    }
+    if (permissions[PermissionGroup.location] != PermissionStatus.granted) {
+      print("无定位权限");
+    }
   }
 
   void _onItemTapped(int index) {

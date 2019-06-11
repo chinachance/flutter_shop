@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_my_demo/page/home.dart';
 import 'package:flutter_my_demo/route/application.dart';
 import 'package:flutter_my_demo/route/routes.dart';
 
@@ -76,6 +77,9 @@ class _SplashPageState extends State<MySplashPage> with SingleTickerProviderStat
         //路由跳转
         Application.router.navigateTo(
             context, "/home", transition: TransitionType.fadeIn);
+//        Navigator.of(context).pushAndRemoveUntil(
+//            MaterialPageRoute(builder: (context) => HomePage()),
+//                (route) => route == null);
       }
     });
     _controller.forward();

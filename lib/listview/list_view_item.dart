@@ -37,7 +37,17 @@ class ListViewItem extends StatelessWidget {
           Application.router.navigateTo(context,
               '${Routes.web}?title=${Uri.encodeComponent(itemTitle)}&url=${Uri
                   .encodeComponent(itemUrl)}',
-              transition: TransitionType.fadeIn);
+              transition: TransitionType.fadeIn).then((result) {
+            if (result == "key") {
+              //执行func路由,func路由为弹出弹窗
+              Application.router.navigateTo(
+                  context, "/demo/func?message=$result");
+            }
+          });
+//          Navigator.of(context).push(
+//              new MaterialPageRoute(
+//                  //跳转到主页
+//                  builder: (BuildContext context) => new WebViewPage(itemUrl,itemTitle)));
         },
         title: Padding(
           child: Text(
