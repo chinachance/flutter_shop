@@ -1,3 +1,4 @@
+import 'package:fluro/fluro.dart';
 /// @Author: 一凨
 /// @Date: 2019-01-14 17:53:54
 /// @Last Modified by: 一凨
@@ -5,6 +6,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_my_demo/page/webview.dart';
+import 'package:flutter_my_demo/route/application.dart';
+import 'package:flutter_my_demo/route/routes.dart';
 
 //import '../routers/application.dart';
 //import '../routers/routers.dart';
@@ -29,10 +32,12 @@ class ListViewItem extends StatelessWidget {
       child: ListTile(
         onTap: () {
           //item跳转
-          Navigator.of(context).push(
-              new MaterialPageRoute(
-                  //跳转到主页
-                  builder: (BuildContext context) => new WebViewPage(itemUrl,itemTitle)));
+//          String route = '/web?url=${Uri.encodeComponent(itemUrl)}&title=${Uri.encodeComponent(itemTitle)}';
+//          Application.router.navigateTo(context, route,transition: TransitionType.fadeIn);
+          Application.router.navigateTo(context,
+              '${Routes.web}?title=${Uri.encodeComponent(itemTitle)}&url=${Uri
+                  .encodeComponent(itemUrl)}',
+              transition: TransitionType.fadeIn);
         },
         title: Padding(
           child: Text(
@@ -51,7 +56,7 @@ class ListViewItem extends StatelessWidget {
           ],
         ),
         trailing:
-            Icon(Icons.keyboard_arrow_right, color: Colors.grey, size: 30.0),
+        Icon(Icons.keyboard_arrow_right, color: Colors.grey, size: 30.0),
       ),
     );
   }

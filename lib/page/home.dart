@@ -3,6 +3,7 @@ import 'package:flutter_my_demo/page/me.dart';
 import 'package:flutter_my_demo/page/message.dart';
 import 'learn.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:flutter_my_demo/app_config.dart';
 
 class HomePage extends StatelessWidget {
   HomePage() : super();
@@ -12,7 +13,9 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: _title,
+      title: defaultConfig.appName,
+      theme: defaultConfig.theme,
+      showPerformanceOverlay: defaultConfig.showPerformanceOverlay,
       home: TabPage(),
     );
   }
@@ -36,10 +39,15 @@ class _MyTabStetefulWidgetState extends State<TabPage> {
   ];
 
   @override
-  Future initState() async {
+  initState() {
     super.initState();
-    Map<PermissionGroup, PermissionStatus> permissions = await PermissionHandler().requestPermissions([PermissionGroup.location]);
+    requestPermiss();
+  }
 
+  requestPermiss() async {
+    Map<PermissionGroup, PermissionStatus> permissions =
+    await PermissionHandler()
+        .requestPermissions([PermissionGroup.location]);
   }
 
   void _onItemTapped(int index) {

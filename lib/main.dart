@@ -1,12 +1,21 @@
 import 'dart:async';
 
+import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_my_demo/page/home.dart';
+import 'package:flutter_my_demo/route/application.dart';
+import 'package:flutter_my_demo/route/routes.dart';
 
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
+
+  MyApp() {
+    //初始化路由
+    final router = new Router();
+    Routes.configureRoutes(router);
+    Application.router = router;
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -15,12 +24,13 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       home: MySplashPage(),
+      //初始化路由
+      onGenerateRoute: Application.router.generator,
     );
   }
 }
 
 class MySplashPage extends StatefulWidget {
-  MySplashPage() : super();
 
   @override
   _SplashPageState createState() => _SplashPageState();
@@ -57,14 +67,15 @@ class _SplashPageState extends State<MySplashPage> with SingleTickerProviderStat
 //      return true;
 //    });
     _controller =
-        AnimationController(vsync: this, duration: Duration(milliseconds: 15000));
+        AnimationController(
+            vsync: this, duration: Duration(milliseconds: 5000));
     _animation = Tween(begin: 0.0, end: 1.0).animate(_controller);
 
     _animation.addStatusListener((status) {
       if (status == AnimationStatus.completed) {
-        Navigator.of(context).pushAndRemoveUntil(
-            MaterialPageRoute(builder: (context) => HomePage()),
-                (route) => route == null);
+        //路由跳转
+        Application.router.navigateTo(
+            context, "/home", transition: TransitionType.fadeIn);
       }
     });
     _controller.forward();
